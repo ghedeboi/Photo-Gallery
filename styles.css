@@ -6,6 +6,7 @@ body {
   margin: 0;
   font-family: sans-serif;
   background: #000c18;
+  width: fit-content;
 }
 
 .header {
@@ -18,9 +19,8 @@ body {
 }
 
 h2 {
-  text-align: left;
+  text-align: center;
   margin: 20px auto 0px;
-  padding-left: 38px;
   color: #fff;
 
 }
@@ -28,8 +28,7 @@ h2 {
 .custom-hr {
   width: 33%;
   border: 2px solid #fdb347;
-  margin: 5px 39px;
-  align-items: left;
+  align-items: center;
 }
 
 .gallery {
