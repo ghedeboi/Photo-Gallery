@@ -1,8 +1,26 @@
 :root {
   --black-blue: #242124;
   --dark-blue: #F0C674;
-  --highlight: #F0C674;
+  --highlight: #b0b0b0;
   --white: #fff;
+  --plate-gradient: linear-gradient(135deg, #b0b0b0, #e0e0e0);
+  --gradient-background: linear-gradient(135deg, #2a2a2a, #1c1c1c, #333333);
+  --screw-color: #666;
+  --screw-groove-color: #444; /* Color of the screw groove */
+  --knife-gradient: linear-gradient(
+    135deg, 
+    #f0f0f0 0%, 
+    #d4d4d4 10%, 
+    #b0b0b0 20%, 
+    #a0a0a0 30%, 
+    #c0c0c0 40%, 
+    #e0e0e0 50%, 
+    #c0c0c0 60%, 
+    #a0a0a0 70%, 
+    #b0b0b0 80%, 
+    #d4d4d4 90%, 
+    #f0f0f0 100%
+  );
 }
 
 * {
@@ -12,9 +30,12 @@
 
 body {
   margin: 0;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color: var(--white);
-  background-color: var(--black-blue);
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--screw-groove-color)
 }
 
 .container {
@@ -23,16 +44,84 @@ body {
   padding: 0 20px;
 }
 
-.header {
-  text-align: center;
-  text-transform: uppercase;
-  padding: 32px;
-  background-color: var(--dark-blue);
-  color: var(--white);
-  border: 4px solid var(--highlight);
-  border-radius: 20px;
+.title-container {
+  padding-top: 20px;
+}
+.title-bar {
+  position: relative;
+  width: 80%;
+  max-width: 1200px; /* Optional: limit the maximum width */
+  padding: 20px;
+  background: var(--knife-gradient);
+  border-bottom: 3px solid #aaa;
+  border-radius: 20px; /* 20px border radius */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* Center the element horizontally */
 }
 
+.title-bar h1 {
+  margin: 0;
+  color: #333;
+}
+
+.screw {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--screw-color);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screw::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background-color: var(--screw-head-color);
+  border-radius: 50%;
+}
+
+.screw-left::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 2px;
+  background-color: var(--screw-groove-color);
+  border-radius: 1px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(20deg); /* Adjust as needed for groove appearance */
+}
+
+.screw-right::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 2px;
+  background-color: var(--screw-groove-color);
+  border-radius: 1px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-70deg); /* Adjust as needed for groove appearance */
+}
+
+.screw-left {
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+.screw-right {
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
 h2 {
   text-align: center;
   margin: 20px auto 0px;
@@ -70,4 +159,53 @@ h2 {
   .custom-hr {
     width: 50%;
   }
+}
+
+/* Modal container */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
+}
+
+/* Modal content */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  border-radius: 10px;
+}
+
+/* Caption text */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
 }

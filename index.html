@@ -9,15 +9,19 @@
 
   <body>
     <div class="container">
-      <header class="header">
-        <h1>Ghede Studios</h1>
-      </header>
+      <div class="title-container">
+        <header class="title-bar">
+          <div class="screw screw-left"></div>
+          <h1>Ghede Studios</h1>
+          <div class="screw screw-right"></div>
+        </header>
+      </div>
       <main>
         <div class="gallerybox">
           <h2>Handheld Photography</h2>
           <hr class="custom-hr">
           <div class="gallery">
-            <img src="https://github.com/ghedeboi/Photo-Gallery/blob/main/Photos/Light%20Post%20HE.jpg?raw=true" alt="Street lamp at night">
+            <img id="street-lamp" src="https://github.com/ghedeboi/Photo-Gallery/blob/main/Photos/Light%20Post%20HE.jpg?raw=true" alt="Street lamp at night">
             <img src="https://github.com/ghedeboi/Photo-Gallery/blob/main/Photos/IMG_1031.jpg?raw=true" alt="Light shining on moss">
             <img src="https://github.com/ghedeboi/Photo-Gallery/blob/main/Photos/Little%20Bee.jpg?raw=true" alt="Bee flying beside white flowers">
             <img src="https://github.com/ghedeboi/Photo-Gallery/blob/main/Photos/Little%20Creek.jpg?raw=true" alt="Shimmering blue creek running through rocks">
@@ -37,5 +41,12 @@
         </div>
       </main>
     </div>
+    <!-- Modal Structure -->
+    <div id="modal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modal-img">
+      <div id="caption"></div>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>
