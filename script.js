@@ -1,34 +1,58 @@
-// script.js
-
-// Get modal elements
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modal-img');
-const captionText = document.getElementById('caption');
-const closeBtn = document.getElementsByClassName('close')[0];
-
-// Add click event to each image
-document.querySelectorAll('.gallery img').forEach(img => {
-  img.addEventListener('click', function() {
-    // Get the clicked image's ID
-    const imageId = this.id;
-    
-    // Set the modal display to block
-    modal.style.display = 'block';
-    // Set the source of the modal image to the clicked image's source
-    modalImg.src = this.src;
-    // Set the caption to the alt text of the clicked image
-    captionText.textContent = this.alt;
-  });
-});
-
-// When the user clicks on <span> (x), close the modal
-closeBtn.onclick = function() {
-  modal.style.display = 'none';
-}
-
-// Close modal when clicking outside the image
-window.onclick = function(event) {
-  if (event.target === modal) {
+document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('.gallery img');
+    const modal = document.createElement('div');
+    const modalImage = document.createElement('img');
+    const closeButton = document.createElement('button');
+  
+    // Style the modal and button
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100%';
+    modal.style.height = '100%';
+    modal.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.zIndex = '1000';
     modal.style.display = 'none';
-  }
-}
+  
+    modalImage.style.maxWidth = '90%';
+    modalImage.style.maxHeight = '90%';
+  
+    closeButton.textContent = 'Close';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '20px';
+    closeButton.style.right = '20px';
+    closeButton.style.padding = '10px';
+    closeButton.style.backgroundColor = '#fff';
+    closeButton.style.border = 'none';
+    closeButton.style.cursor = 'pointer';
+  
+    modal.appendChild(modalImage);
+    modal.appendChild(closeButton);
+    document.body.appendChild(modal);
+  
+    images.forEach(img => {
+      img.addEventListener('click', (e) => {
+        const fullSrc = img.getAttribute('data-full-src');
+        modalImage.src = fullSrc;
+        modal.style.display = 'flex';
+      });
+    });
+  
+    const hideModal = () => {
+      modal.style.display = 'none';
+      modalImage.src = ''; // Clear the image source to prevent flickering
+    };
+  
+    closeButton.addEventListener('click', hideModal);
+  
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        hideModal();
+      }
+    });
+  });
+  
+  
